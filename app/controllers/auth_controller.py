@@ -1,6 +1,6 @@
 from app.services.auth_service import register_user, login_user
 from app.validators.auth_validator import validate_login
-
+from app.utils.api_response import ApiResponse
 
 def register_controller(data):
     name = data.get("name")
@@ -22,17 +22,8 @@ def register_controller(data):
 def login_controller(data):
     email = data.get("email")
     password = data.get("password")
-    
-    validation_error = validate_login(data)
 
-    if validation_error:
-        return validation_error
+    if not email or not password:
+        return ApiResponse.error_response("Email and password required", 400)
 
-    token, error = login_user(email, password)
-
-    if error:
-        return None, error
-
-    return {
-        "token": token
-    }, None
+    return login_user(email, password)
