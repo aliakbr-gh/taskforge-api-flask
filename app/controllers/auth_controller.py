@@ -1,10 +1,17 @@
 from app.services.auth_service import register_user, login_user
+from app.validators.auth_validator import validate_login
 
 
 def register_controller(data):
     name = data.get("name")
     email = data.get("email")
     password = data.get("password")
+
+    # validation layer
+    valid, error = validate_login(data)
+
+    if not valid:
+        return None, error
 
     user, error = register_user(name, email, password)
 

@@ -7,7 +7,7 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route("/auth/register", methods=["POST"])
 def register():
     data = request.get_json()
-
+    # breakpoint()
     result, error = register_controller(data)
 
     if error:
