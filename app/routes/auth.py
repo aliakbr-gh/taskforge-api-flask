@@ -23,12 +23,6 @@ def register():
 def login():
     data = request.get_json()
 
-    result, error = login_controller(data)
+    response = login_controller(data)
 
-    if error:
-        return jsonify({"message": error}), 401
-
-    return jsonify({
-        "message": "Login successful",
-        "data": result
-    })
+    return jsonify(response.to_dict()), response.status_code

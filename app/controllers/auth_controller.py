@@ -7,12 +7,6 @@ def register_controller(data):
     email = data.get("email")
     password = data.get("password")
 
-    # validation layer
-    valid, error = validate_login(data)
-
-    if not valid:
-        return None, error
-
     user, error = register_user(name, email, password)
 
     if error:
@@ -28,6 +22,11 @@ def register_controller(data):
 def login_controller(data):
     email = data.get("email")
     password = data.get("password")
+    
+    validation_error = validate_login(data)
+
+    if validation_error:
+        return validation_error
 
     token, error = login_user(email, password)
 
