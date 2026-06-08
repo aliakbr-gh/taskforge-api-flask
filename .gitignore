@@ -1,0 +1,35 @@
+# Python bytecode caching
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments (Local installations)
+venv/
+.venv/
+env/
+ENV/
+育env/
+
+# Flask & Application configuration secrets
+.env
+.flaskenv
+instance/
+config.py
+!config.example.py
+
+# Databases (SQLite logs & local instances)
+*.db
+*.sqlite3
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDEs and Code Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
